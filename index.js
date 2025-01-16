@@ -1,19 +1,20 @@
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
-const cors = require ('cors');
+const cors = require('cors');
 const AuthRouter = require('./Routes/AuthRouters');
+const UserOTPVerificaton = require('../backend/Models/UserOTPVerification');
 
 require('dotenv').config();
-require ('./Models/db');
+require('./Models/db');
 const PORT = process.env.PORT || 8080;
 
 app.get('/ping', (req, res) => {
-    res.send('PONG'); 
+    res.send('PONG');
 });
 
 app.use(bodyParser.json());
-app.use(cors());                         //alow requests from other Ports
+app.use(cors());      //alow requests from other Ports
 app.use('/auth', AuthRouter)
 
 app.listen(PORT, () => {
